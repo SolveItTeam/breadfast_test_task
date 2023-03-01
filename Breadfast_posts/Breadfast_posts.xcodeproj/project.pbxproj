@@ -29,6 +29,7 @@
 		55B1FF7429AF8FFA00A5DB4E /* PostsListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1FF7329AF8FFA00A5DB4E /* PostsListAssembly.swift */; };
 		55B1FF7629AF904300A5DB4E /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1FF7529AF904300A5DB4E /* UIStoryboard+Extensions.swift */; };
 		55B1FF7829AF908600A5DB4E /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1FF7729AF908600A5DB4E /* DependencyFactory.swift */; };
+		55B1FF7A29AF9B1800A5DB4E /* GenericTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1FF7929AF9B1800A5DB4E /* GenericTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		55B1FF7329AF8FFA00A5DB4E /* PostsListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListAssembly.swift; sourceTree = "<group>"; };
 		55B1FF7529AF904300A5DB4E /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		55B1FF7729AF908600A5DB4E /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
+		55B1FF7929AF9B1800A5DB4E /* GenericTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +139,6 @@
 				55B1FF5C29AF81DE00A5DB4E /* Bootstrap */,
 				55B1FF5829AF801400A5DB4E /* Configurations */,
 				5511B22629AF5F03000B4B13 /* Info.plist */,
-				55B1FF7529AF904300A5DB4E /* UIStoryboard+Extensions.swift */,
 			);
 			path = Breadfast_posts;
 			sourceTree = "<group>";
@@ -208,6 +209,7 @@
 		55B1FF5E29AF820000A5DB4E /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				55B1FF7529AF904300A5DB4E /* UIStoryboard+Extensions.swift */,
 				55B1FF5F29AF820B00A5DB4E /* MainCoordinator.swift */,
 			);
 			path = Flows;
@@ -216,6 +218,7 @@
 		55B1FF6229AF82CB00A5DB4E /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				55B1FF7929AF9B1800A5DB4E /* GenericTableViewDataSource.swift */,
 				55B1FF6329AF82D200A5DB4E /* All Posts */,
 			);
 			path = Features;
@@ -393,6 +396,7 @@
 				55B1FF7829AF908600A5DB4E /* DependencyFactory.swift in Sources */,
 				55B1FF7029AF8A5000A5DB4E /* NoContentView.swift in Sources */,
 				55B1FF7429AF8FFA00A5DB4E /* PostsListAssembly.swift in Sources */,
+				55B1FF7A29AF9B1800A5DB4E /* GenericTableViewDataSource.swift in Sources */,
 				55B1FF5B29AF808900A5DB4E /* AppEnvironment.swift in Sources */,
 				55B1FF6929AF875E00A5DB4E /* PostsListCell.swift in Sources */,
 				5511B21929AF5F02000B4B13 /* AppDelegate.swift in Sources */,

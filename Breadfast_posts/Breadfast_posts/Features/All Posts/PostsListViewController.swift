@@ -13,6 +13,7 @@ final class PostsListViewController: UIViewController {
     // MARK: - Properties
     var viewModel: PostsListViewModelInput!
     private let cancelBag = CancelBag()
+    private let dataSource = GenericTableViewDataSource<PostsListCellProps>()
     
     // MARK: - UI
     @IBOutlet private weak var noContentView: NoContentView!
@@ -27,9 +28,23 @@ final class PostsListViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.refreshControl = refreshControl
+        setupTableView()
         bindToViewState()
         viewModel.viewDidLoad()
+    }
+    
+    private func setupTableView() {
+        dataSource.setup { tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCellWithRegistration(type: PostsListCell.self, indexPath: indexPath)
+            cell.fill(with: item)
+            return cell
+        } selectionHandler: { [weak self] indexPath in
+            self?.viewModel.selectPost(at: indexPath)
+        }
+        
+        tableView.refreshControl = refreshControl
+        tableView.dataSource = dataSource
+        tableView.delegate = dataSource
     }
     
     // MARK: - Actions
@@ -50,8 +65,9 @@ final class PostsListViewController: UIViewController {
                     break
                 case .content(let items):
                     self?.refreshControl.endRefreshing()
-                    //TODO: Set data to data source
+                    self?.dataSource.updateItems(items)
                     self?.tableView.reloadData()
+                    
                     if items.isEmpty {
                         self?.tableView.isHidden = true
                         self?.noContentView.isHidden = false

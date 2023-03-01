@@ -5,6 +5,7 @@
 //  Created by Andrey on 01/03/2023.
 //
 
+import Foundation
 import ArchitectureComponents
 import Extensions
 import DomainLayer
@@ -14,7 +15,9 @@ typealias PostsListViewState = LoadableSceneState<[PostsListCellProps]>
 
 protocol PostsListViewModelInput: SceneViewLifecycleEvents {
     var viewStateSubject: CurrentValueSubject<PostsListViewState, Never> { get }
+    
     func reloadPosts()
+    func selectPost(at indexPath: IndexPath)
 }
 
 final class PostsListViewModel {
@@ -66,5 +69,9 @@ extension PostsListViewModel: PostsListViewModelInput {
     
     func reloadPosts() {
         loadPosts()
+    }
+    
+    func selectPost(at indexPath: IndexPath) {
+        
     }
 }
