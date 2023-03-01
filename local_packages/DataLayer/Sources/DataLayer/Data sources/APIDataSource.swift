@@ -2,9 +2,9 @@ import Foundation
 import Combine
 import Alamofire
 
-public enum APIDataSourceError: Error {
-    case cantDecodeResponse
-    case somethingWrong
+public struct APIDataSourceError: Error {
+    public let code: NetworkCodes
+    public let description: String?
 }
 
 final class APIDataSource {
@@ -40,20 +40,32 @@ final class APIDataSource {
             )
             let request = factory.makeData(endpoint)
             request.response(queue: self.mappingQueue) { afResponse in
+                guard
+                    let requestResponse = afResponse.response,
+                    let code = NetworkCodes(rawValue: requestResponse.statusCode)
+                else {
+                    let error = APIDataSourceError(code: .serverError, description: nil)
+                    closure(.failure(error))
+                    return
+                }
+                
                 switch afResponse.result {
                 case .success(let data):
                     guard let responseData = data else {
-                        closure(.failure(APIDataSourceError.cantDecodeResponse))
+                        let error = APIDataSourceError(code: code, description: nil)
+                        closure(.failure(error))
                         return
                     }
                     do {
-                        let response = try self.mapper.map(response, from: responseData)
-                        closure(.success(response))
-                    } catch {
-                        closure(.failure(APIDataSourceError.cantDecodeResponse))
+                        let responseObject = try self.mapper.map(response, from: responseData)
+                        closure(.success(responseObject))
+                    } catch let error {
+                        let error = APIDataSourceError(code: code, description: error.localizedDescription)
+                        closure(.failure(error))
                     }
-                case .failure:
-                    closure(.failure(APIDataSourceError.somethingWrong))
+                case .failure(let error):
+                    let error = APIDataSourceError(code: code, description: error.errorDescription)
+                    closure(.failure(error))
                 }
             }
         }

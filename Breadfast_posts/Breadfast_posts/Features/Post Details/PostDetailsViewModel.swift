@@ -69,16 +69,15 @@ private extension PostDetailsViewModel {
                 switch result {
                 case .success(let comments):
                     let commentSection = self.makeCommentSection(comments)
-                    let newState = self.viewStateSubject.value
+                    var newSections = [PostDetailsViewSections]()
                     switch self.viewStateSubject.value {
                     case .content(let sections):
-                        let newSections = sections + [commentSection]
-                        self.viewStateSubject.value = .content(data: newSections)
-                        break
+                        newSections = sections + [commentSection]
                     default:
                         let postSection = self.makePostSection(post)
-                        self.viewStateSubject.value = .content(data: [postSection, commentSection])
+                        newSections = [postSection, commentSection]
                     }
+                    self.viewStateSubject.value = .content(data: newSections)
                 case .failure:
                     self.viewStateSubject.value = .error(error: Localization.somethingWrongError.rawValue)
                 }

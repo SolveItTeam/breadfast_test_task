@@ -27,4 +27,10 @@ extension AllPostsTableDataSource: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectionHandler?(indexPath)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + scrollView.frame.size.height > scrollView.contentSize.height - 50 {
+            
+        }
+    }
 }
