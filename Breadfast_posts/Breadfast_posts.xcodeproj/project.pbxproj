@@ -16,6 +16,8 @@
 		5511B23029AF5F04000B4B13 /* Breadfast_postsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511B22F29AF5F04000B4B13 /* Breadfast_postsTests.swift */; };
 		5511B23A29AF5F04000B4B13 /* Breadfast_postsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511B23929AF5F04000B4B13 /* Breadfast_postsUITests.swift */; };
 		5511B23C29AF5F04000B4B13 /* Breadfast_postsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511B23B29AF5F04000B4B13 /* Breadfast_postsUITestsLaunchTests.swift */; };
+		554679C229AF615E001AFF98 /* ArchitectureComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C129AF615E001AFF98 /* ArchitectureComponents */; };
+		554679C429AF615E001AFF98 /* Extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C329AF615E001AFF98 /* Extensions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		5511B23529AF5F04000B4B13 /* Breadfast_postsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Breadfast_postsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5511B23929AF5F04000B4B13 /* Breadfast_postsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breadfast_postsUITests.swift; sourceTree = "<group>"; };
 		5511B23B29AF5F04000B4B13 /* Breadfast_postsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breadfast_postsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		554679BE29AF6133001AFF98 /* ArchitectureComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ArchitectureComponents; path = ../local_packages/ArchitectureComponents; sourceTree = "<group>"; };
+		554679BF29AF6146001AFF98 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Extensions; path = ../local_packages/Extensions; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554679C429AF615E001AFF98 /* Extensions in Frameworks */,
+				554679C229AF615E001AFF98 /* ArchitectureComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +85,12 @@
 		5511B20C29AF5F02000B4B13 = {
 			isa = PBXGroup;
 			children = (
+				554679BD29AF6133001AFF98 /* Packages */,
 				5511B21729AF5F02000B4B13 /* Breadfast_posts */,
 				5511B22E29AF5F04000B4B13 /* Breadfast_postsTests */,
 				5511B23829AF5F04000B4B13 /* Breadfast_postsUITests */,
 				5511B21629AF5F02000B4B13 /* Products */,
+				554679C029AF615E001AFF98 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +135,22 @@
 			path = Breadfast_postsUITests;
 			sourceTree = "<group>";
 		};
+		554679BD29AF6133001AFF98 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				554679BE29AF6133001AFF98 /* ArchitectureComponents */,
+				554679BF29AF6146001AFF98 /* Extensions */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		554679C029AF615E001AFF98 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +167,10 @@
 			dependencies = (
 			);
 			name = Breadfast_posts;
+			packageProductDependencies = (
+				554679C129AF615E001AFF98 /* ArchitectureComponents */,
+				554679C329AF615E001AFF98 /* Extensions */,
+			);
 			productName = Breadfast_posts;
 			productReference = 5511B21529AF5F02000B4B13 /* Breadfast_posts.app */;
 			productType = "com.apple.product-type.application";
@@ -604,6 +632,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		554679C129AF615E001AFF98 /* ArchitectureComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ArchitectureComponents;
+		};
+		554679C329AF615E001AFF98 /* Extensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Extensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5511B20D29AF5F02000B4B13 /* Project object */;
 }
