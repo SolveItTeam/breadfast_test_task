@@ -2,5 +2,5 @@ import Foundation
 import Combine
 
 public protocol PostsRepository {
-    func getAll() -> AnyPublisher<[PostEntity], Error>
+    func getAll(page: Int) -> AnyPublisher<PaginatedEntity<[PostEntity]>, Error>
 }

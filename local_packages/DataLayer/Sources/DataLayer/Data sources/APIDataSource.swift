@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import Alamofire
+import DomainLayer
 
 public struct APIDataSourceError: Error {
     public let code: NetworkCodes
@@ -29,8 +30,11 @@ final class APIDataSource {
     }
     
     // MARK: - Logic
-    func send<Response: Decodable>(_ response: Response.Type, endpoint: EndPointType) -> AnyPublisher<Response, Error>  {
-        Future<Response, Error> { [weak self] closure in
+    func send<Response: Decodable>(
+        _ response: Response.Type,
+        endpoint: EndPointType
+    ) -> AnyPublisher<(data: Response, pagination: PaginationStateEntity?), Error>  {
+        Future<(data: Response, pagination: PaginationStateEntity?), Error> { [weak self] closure in
             guard let self = self else { return }
             
             let factory = RequestFactory(
@@ -58,7 +62,9 @@ final class APIDataSource {
                     }
                     do {
                         let responseObject = try self.mapper.map(response, from: responseData)
-                        closure(.success(responseObject))
+                        let pagination = self.makePaginationEntity(from: requestResponse)
+                        let result = (responseObject, pagination)
+                        closure(.success(result))
                     } catch let error {
                         let error = APIDataSourceError(code: code, description: error.localizedDescription)
                         closure(.failure(error))
@@ -70,6 +76,18 @@ final class APIDataSource {
             }
         }
         .eraseToAnyPublisher()
+    }
+    
+    private func makePaginationEntity(from response: HTTPURLResponse) -> PaginationStateEntity? {
+        guard
+            let currentPageString = response.value(forHTTPHeaderField: "x-pagination-page"),
+            let currentPage = Int(currentPageString),
+            let totalPagesString = response.value(forHTTPHeaderField: "x-pagination-pages"),
+            let totalPages = Int(totalPagesString)
+        else {
+            return nil
+        }
+        return .init(currentPage: currentPage, totalPages: totalPages)
     }
 }
 

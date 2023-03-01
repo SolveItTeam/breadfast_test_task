@@ -10,6 +10,7 @@ import UIKit
 final class AllPostsTableDataSource: NSObject {
     var items = [PostsListCellProps]()
     var selectionHandler: ((IndexPath) -> Void)?
+    var requestNextItemsHandler: (() -> Void)?
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -30,7 +31,7 @@ extension AllPostsTableDataSource: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.frame.size.height > scrollView.contentSize.height - 50 {
-            
+            requestNextItemsHandler?()
         }
     }
 }

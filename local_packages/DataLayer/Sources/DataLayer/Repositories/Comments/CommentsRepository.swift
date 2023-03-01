@@ -22,6 +22,7 @@ extension CommentsRepositoryImpl: CommentsRepository {
     func getAll(for postID: PostEntity.ID) -> AnyPublisher<[PostCommentEntity], Error> {
         dataSource
             .send([PostCommentResponse].self, endpoint: CommentsEndPoint.getCommentsForPost(id: postID))
+            .map({ $0.data })
             .map({ $0.map({ $0.toDomainEntity() }) })
             .eraseToAnyPublisher()
     }

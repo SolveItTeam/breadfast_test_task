@@ -12,10 +12,15 @@ final class PostsRepositoryImpl {
 
 // MARK: - PostsRepository
 extension PostsRepositoryImpl: PostsRepository {
-    func getAll() -> AnyPublisher<[PostEntity], Error> {
+    func getAll(page: Int) -> AnyPublisher<PaginatedEntity<[PostEntity]>, Error> {
         dataSource
-            .send([PostsResponse].self, endpoint: PostsEndPoint.getAllPosts)
-            .map({ $0.map({ $0.toDomainEntity() }) })
+            .send([PostsResponse].self, endpoint: PostsEndPoint.getAllPosts(page: page))
+            .map { response -> PaginatedEntity<[PostEntity]> in
+                return .init(
+                    pagination: response.pagination,
+                    payload: response.data.map({ $0.toDomainEntity() })
+                )
+            }
             .eraseToAnyPublisher()
     }
 }

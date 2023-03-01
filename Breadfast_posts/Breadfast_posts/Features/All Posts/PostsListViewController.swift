@@ -29,6 +29,9 @@ final class PostsListViewController: BaseViewController {
         tableViewDataSource.selectionHandler = { [weak self] indexPath in
             self?.viewModel.selectPost(at: indexPath)
         }
+        tableViewDataSource.requestNextItemsHandler = { [weak self] in
+            self?.viewModel.requestNextPostsPage()
+        }
         tableView.dataSource = tableViewDataSource
         tableView.delegate = tableViewDataSource
     }

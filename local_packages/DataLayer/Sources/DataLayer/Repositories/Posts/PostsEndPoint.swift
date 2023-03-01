@@ -2,12 +2,12 @@ import Alamofire
 import Foundation
 
 enum PostsEndPoint: EndPointType {
-    case getAllPosts
+    case getAllPosts(page: Int)
     
     var path: String {
         switch self {
-        case .getAllPosts:
-            return "posts"
+        case .getAllPosts(let page):
+            return "posts?page=\(page)&per_page=20"
         }
     }
     

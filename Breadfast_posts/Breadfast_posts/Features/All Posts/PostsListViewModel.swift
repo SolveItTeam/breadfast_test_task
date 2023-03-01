@@ -16,6 +16,7 @@ typealias PostsListViewState = LoadableSceneState<[PostsListCellProps]>
 protocol PostsListViewModelInput: SceneViewLifecycleEvents {
     var viewStateSubject: CurrentValueSubject<PostsListViewState, Never> { get }
     
+    func requestNextPostsPage()
     func reloadPosts()
     func selectPost(at indexPath: IndexPath)
 }
@@ -24,7 +25,9 @@ final class PostsListViewModel {
     private let cancelBag: CancelBag
     
     private let useCase: GetAllPostsUseCase
+    private var paginationCursor: PaginationCursor
     private var posts: [PostEntity]
+    
     private let openPostDetailsAction: (PostEntity) -> Void
     
     var viewStateSubject: CurrentValueSubject<PostsListViewState, Never>
@@ -32,9 +35,12 @@ final class PostsListViewModel {
     // MARK: - Initialization
     init(useCase: GetAllPostsUseCase, openPostDetailsAction: @escaping (PostEntity) -> Void) {
         self.useCase = useCase
-        self.openPostDetailsAction = openPostDetailsAction
         self.posts = []
+        
         self.cancelBag = .init()
+        
+        self.paginationCursor = .init()
+        self.openPostDetailsAction = openPostDetailsAction
         self.viewStateSubject = .init(.loading)
     }
 }
@@ -42,17 +48,20 @@ final class PostsListViewModel {
 // MARK: - Private
 private extension PostsListViewModel {
     func loadPosts() {
-        viewStateSubject.value = .loading
+        guard let page = paginationCursor.nextPage else { return }
         useCase
-            .invoke()
+            .invoke(pageNumber: page)
             .toResult()
             .sink { [weak self] result in
                 guard let self = self else { return }
                 switch result {
-                case .success(let posts):
-                    self.posts = posts
+                case .success(let response):
+                    if let paginationUpdate = response.pagination {
+                        self.paginationCursor.update(paginationUpdate)
+                    }
+                    self.posts += response.payload
                     
-                    let props = posts.map({
+                    let props = self.posts.map({
                         PostsListCellProps(
                             authorID: $0.userID,
                             title: $0.title,
@@ -71,11 +80,24 @@ private extension PostsListViewModel {
 // MARK: - AllPostsViewModelInput
 extension PostsListViewModel: PostsListViewModelInput {
     func viewDidLoad() {
+        viewStateSubject.value = .loading
         loadPosts()
     }
     
     func reloadPosts() {
+        posts.removeAll()
+        paginationCursor.reset()
+        viewStateSubject.value = .loading
         loadPosts()
+    }
+    
+    func requestNextPostsPage() {
+        switch viewStateSubject.value {
+        case .content:
+            loadPosts()
+        default:
+            break
+        }
     }
     
     func selectPost(at indexPath: IndexPath) {
