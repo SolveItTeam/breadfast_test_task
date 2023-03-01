@@ -18,6 +18,7 @@
 		5511B23C29AF5F04000B4B13 /* Breadfast_postsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511B23B29AF5F04000B4B13 /* Breadfast_postsUITestsLaunchTests.swift */; };
 		554679C229AF615E001AFF98 /* ArchitectureComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C129AF615E001AFF98 /* ArchitectureComponents */; };
 		554679C429AF615E001AFF98 /* Extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C329AF615E001AFF98 /* Extensions */; };
+		554679C729AF61DD001AFF98 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C629AF61DD001AFF98 /* DataLayer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		5511B23B29AF5F04000B4B13 /* Breadfast_postsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breadfast_postsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		554679BE29AF6133001AFF98 /* ArchitectureComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ArchitectureComponents; path = ../local_packages/ArchitectureComponents; sourceTree = "<group>"; };
 		554679BF29AF6146001AFF98 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Extensions; path = ../local_packages/Extensions; sourceTree = "<group>"; };
+		554679C529AF61D4001AFF98 /* DataLayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DataLayer; path = ../local_packages/DataLayer; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			files = (
 				554679C429AF615E001AFF98 /* Extensions in Frameworks */,
 				554679C229AF615E001AFF98 /* ArchitectureComponents in Frameworks */,
+				554679C729AF61DD001AFF98 /* DataLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +143,7 @@
 			children = (
 				554679BE29AF6133001AFF98 /* ArchitectureComponents */,
 				554679BF29AF6146001AFF98 /* Extensions */,
+				554679C529AF61D4001AFF98 /* DataLayer */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -170,6 +174,7 @@
 			packageProductDependencies = (
 				554679C129AF615E001AFF98 /* ArchitectureComponents */,
 				554679C329AF615E001AFF98 /* Extensions */,
+				554679C629AF61DD001AFF98 /* DataLayer */,
 			);
 			productName = Breadfast_posts;
 			productReference = 5511B21529AF5F02000B4B13 /* Breadfast_posts.app */;
@@ -641,6 +646,10 @@
 		554679C329AF615E001AFF98 /* Extensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Extensions;
+		};
+		554679C629AF61DD001AFF98 /* DataLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataLayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
