@@ -19,6 +19,7 @@
 		554679C229AF615E001AFF98 /* ArchitectureComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C129AF615E001AFF98 /* ArchitectureComponents */; };
 		554679C429AF615E001AFF98 /* Extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C329AF615E001AFF98 /* Extensions */; };
 		554679C729AF61DD001AFF98 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 554679C629AF61DD001AFF98 /* DataLayer */; };
+		55B1FF5B29AF808900A5DB4E /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1FF5A29AF808900A5DB4E /* AppEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		554679BE29AF6133001AFF98 /* ArchitectureComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ArchitectureComponents; path = ../local_packages/ArchitectureComponents; sourceTree = "<group>"; };
 		554679BF29AF6146001AFF98 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Extensions; path = ../local_packages/Extensions; sourceTree = "<group>"; };
 		554679C529AF61D4001AFF98 /* DataLayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DataLayer; path = ../local_packages/DataLayer; sourceTree = "<group>"; };
+		55B1FF5929AF802000A5DB4E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		55B1FF5A29AF808900A5DB4E /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,7 @@
 		5511B21729AF5F02000B4B13 /* Breadfast_posts */ = {
 			isa = PBXGroup;
 			children = (
+				55B1FF5829AF801400A5DB4E /* Configurations */,
 				5511B21829AF5F02000B4B13 /* AppDelegate.swift */,
 				5511B21A29AF5F02000B4B13 /* SceneDelegate.swift */,
 				5511B21C29AF5F02000B4B13 /* ViewController.swift */,
@@ -153,6 +157,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55B1FF5829AF801400A5DB4E /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				55B1FF5929AF802000A5DB4E /* Config.xcconfig */,
+				55B1FF5A29AF808900A5DB4E /* AppEnvironment.swift */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5511B21D29AF5F02000B4B13 /* ViewController.swift in Sources */,
+				55B1FF5B29AF808900A5DB4E /* AppEnvironment.swift in Sources */,
 				5511B21929AF5F02000B4B13 /* AppDelegate.swift in Sources */,
 				5511B21B29AF5F02000B4B13 /* SceneDelegate.swift in Sources */,
 			);
@@ -351,6 +365,7 @@
 /* Begin XCBuildConfiguration section */
 		5511B23D29AF5F04000B4B13 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55B1FF5929AF802000A5DB4E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -411,6 +426,7 @@
 		};
 		5511B23E29AF5F04000B4B13 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55B1FF5929AF802000A5DB4E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  Breadfast_posts
+//
+//  Created by Andrey on 01/03/2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BP_BASE_URL = https:/\/\gorest.co.in/public/v2
+BP_API_TOKEN = 5e2cf56b5831dae05529862e33418b2f743a378929c591bce1f3721c77b697ef
