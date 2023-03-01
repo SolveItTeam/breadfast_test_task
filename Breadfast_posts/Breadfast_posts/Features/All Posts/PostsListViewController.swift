@@ -20,10 +20,12 @@ final class PostsListViewController: BaseViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Localization.allPosts.rawValue
         viewModel.viewDidLoad()
     }
     
-    override func setupTableView() {
+    // MARK: - Setup
+    override func setupDataSource() {
         dataSource.setup { tableView, indexPath, item in
             let cell = tableView.dequeueReusableCellWithRegistration(
                 type: PostsListCell.self,
@@ -43,6 +45,7 @@ final class PostsListViewController: BaseViewController {
         showLoadingState()
     }
     
+    // MARK: - State management
     override func bindToViewState() {
         viewModel
             .viewStateSubject

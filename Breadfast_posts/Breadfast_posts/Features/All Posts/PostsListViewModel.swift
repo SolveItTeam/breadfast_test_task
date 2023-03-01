@@ -54,7 +54,7 @@ private extension PostsListViewModel {
                     
                     let props = posts.map({
                         PostsListCellProps(
-                            authorID: "Author ID: \($0.userID)",
+                            authorID: $0.userID,
                             title: $0.title,
                             content: $0.content
                         )

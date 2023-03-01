@@ -24,13 +24,13 @@ class BaseViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        setupDataSource()
         setupInitialState()
         bindToViewState()
     }
     
     // MARK: - Setup
-    open func setupTableView() {
+    open func setupDataSource() {
         
     }
     

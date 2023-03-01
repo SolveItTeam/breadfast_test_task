@@ -10,5 +10,7 @@ import Foundation
 enum Localization: String {
     case loading = "Loading..."
     case noPosts = "No posts"
+    case allPosts = "All Posts"
     case somethingWrongError = "Something wrong"
+    case authorIDPrefix = "Author ID:"
 }

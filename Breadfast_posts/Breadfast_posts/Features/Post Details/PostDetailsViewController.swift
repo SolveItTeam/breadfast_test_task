@@ -8,23 +8,19 @@
 import UIKit
 import Extensions
 
-final class PostDetailsViewController: UIViewController {
+final class PostDetailsViewController: BaseViewController {
     var viewModel: PostDetailsViewModelInput!
-    private let cancelBag = CancelBag()
     private let dataSource = GenericTableViewDataSource<PostDetailsViewRows>()
-    
-    // MARK: - @IBOutlet's
-    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        bindToViewState()
+        title = viewModel.title
         viewModel.viewDidLoad()
     }
     
-    private func setupTableView() {
+    // MARK: - Setup
+    override func setupDataSource() {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
         dataSource.setup(cellFactory: { tableView, indexPath, item in
@@ -47,13 +43,13 @@ final class PostDetailsViewController: UIViewController {
             
         }, selectionHandler: nil)
     }
-}
-
-// MARK: - State management
-private extension PostDetailsViewController {
-    func bindToViewState() {
-        title = viewModel.title
-        
+    
+    override func setupInitialState() {
+        tableView.refreshControl?.beginRefreshing()
+    }
+    
+    // MARK: - State management
+    override func bindToViewState() {
         viewModel
             .viewStateSubject
             .receive(on: DispatchQueue.main)
@@ -62,13 +58,20 @@ private extension PostDetailsViewController {
                 switch viewState {
                 case .content(let rows):
                     self.dataSource.updateItems(rows)
+                    self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 case .error(let message):
+                    self.tableView.refreshControl?.endRefreshing()
                     self.showErrorAlert(message: message)
                 case .loading:
-                    break
+                    self.tableView.refreshControl?.beginRefreshing()
                 }
             }
             .store(in: cancelBag)
+    }
+    
+    // MARK: - Actions
+    override func pullToRefreshTrigerred() {
+        viewModel.reload()
     }
 }

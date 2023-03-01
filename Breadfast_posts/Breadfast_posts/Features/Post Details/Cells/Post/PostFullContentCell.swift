@@ -26,7 +26,7 @@ extension PostFullContentCell: ConfigurableTableNibCell {
     typealias Props = PostsListCellProps
     
     func fill(with props: PostsListCellProps) {
-        authorIDLabel.text = props.authorID
+        authorIDLabel.text = props.localizedAuthorID
         titleLabel.text = props.title
         contentLabel.text = props.content
     }

@@ -21,6 +21,7 @@ typealias PostDetailsViewState = LoadableSceneState<[PostDetailsViewRows]>
 protocol PostDetailsViewModelInput: SceneViewLifecycleEvents {
     var title: String { get }
     var viewStateSubject: CurrentValueSubject<PostDetailsViewState, Never> { get }
+    func reload()
 }
 
 final class PostDetailsViewModel {
@@ -40,23 +41,28 @@ final class PostDetailsViewModel {
     }
 }
 
-// MARK: - PostCommentsViewModelInput
-extension PostDetailsViewModel: PostDetailsViewModelInput {
-    private func makeRows(from comments: [PostCommentEntity], post: PostEntity) -> [PostDetailsViewRows] {
-        let postProps = PostsListCellProps(
-            authorID: "Author ID:\(self.post.userID)",
-            title: self.post.title,
-            content: self.post.content
+// MARK: - State building
+private extension PostDetailsViewModel {
+    func makePostRow(_ post: PostEntity) -> PostDetailsViewRows {
+        let props = PostsListCellProps(
+            authorID: post.userID,
+            title: post.title,
+            content: post.content
         )
-        let commentRows = comments.lazy.map {
-            PostCommentCellProps(authorName: $0.name, content: $0.content)
-        }
-        .map({ PostDetailsViewRows.comment($0) })
-        
-        return [.post(postProps)] + commentRows
+        return .post(props)
     }
     
-    func viewDidLoad() {
+    func makeCommentRows(_ comments: [PostCommentEntity]) -> [PostDetailsViewRows] {
+        comments
+            .lazy
+            .map { PostCommentCellProps(authorName: $0.name, content: $0.content) }
+            .map({ PostDetailsViewRows.comment($0) })
+    }
+}
+
+// MARK: - Data flow
+private extension PostDetailsViewModel {
+    func loadFor(post: PostEntity) {
         useCase
             .invoke(postID: post.id)
             .toResult()
@@ -64,13 +70,36 @@ extension PostDetailsViewModel: PostDetailsViewModelInput {
                 guard let self = self else { return }
                 switch result {
                 case .success(let comments):
-                    let rows = self.makeRows(from: comments, post: self.post)
-                    self.viewStateSubject.value = .content(data: rows)
+                    let commentRows = self.makeCommentRows(comments)
+                    let newState = self.viewStateSubject.value
+                    switch self.viewStateSubject.value {
+                    case .content(let rows):
+                        var newRows = rows + commentRows
+                        self.viewStateSubject.value = .content(data: newRows)
+                    default:
+                        let postRow = self.makePostRow(post)
+                        let rows = [postRow] + commentRows
+                        self.viewStateSubject.value = .content(data: rows)
+                    }
                 case .failure:
                     self.viewStateSubject.value = .error(error: Localization.somethingWrongError.rawValue)
                 }
                 
             }
             .store(in: cancelBag)
+    }
+}
+
+// MARK: - PostCommentsViewModelInput
+extension PostDetailsViewModel: PostDetailsViewModelInput {
+    func viewDidLoad() {
+        let postRow = makePostRow(post)
+        viewStateSubject.value = .content(data: [postRow])
+        loadFor(post: post)
+    }
+    
+    func reload() {
+        viewStateSubject.value = .loading
+        loadFor(post: post)
     }
 }
