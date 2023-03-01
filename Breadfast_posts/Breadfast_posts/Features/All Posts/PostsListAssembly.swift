@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import DomainLayer
 
 struct PostsListAssembly {
     private init(){}
     
-    static func make() -> UIViewController {
+    static func make(openPostDetailsAction: @escaping (PostEntity) -> Void) -> UIViewController {
         let viewController = UIStoryboard.main.load(PostsListViewController.self)
-        let viewModel = PostsListViewModel(useCase: DependencyFactory.shared.makeAllPostsUseCase())
+        let viewModel = PostsListViewModel(
+            useCase: DependencyFactory.shared.makeAllPostsUseCase(),
+            openPostDetailsAction: openPostDetailsAction
+        )
         viewController.viewModel = viewModel
         return viewController
     }

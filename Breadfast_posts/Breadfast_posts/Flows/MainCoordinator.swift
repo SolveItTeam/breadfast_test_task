@@ -7,6 +7,7 @@
 
 import UIKit
 import ArchitectureComponents
+import DomainLayer
 
 final class MainCoordinator: BaseCoordinator {
     private let window: UIWindow
@@ -24,7 +25,13 @@ final class MainCoordinator: BaseCoordinator {
     
     // MARK: - Flow
     override func start() {
-        let module = PostsListAssembly.make()
+        let module = PostsListAssembly.make { [weak self] post in
+            self?.openDetails(for: post)
+        }
         router.set(controllers: [module])
+    }
+    
+    private func openDetails(for post: PostEntity) {
+        
     }
 }

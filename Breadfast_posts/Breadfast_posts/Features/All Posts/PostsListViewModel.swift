@@ -21,14 +21,19 @@ protocol PostsListViewModelInput: SceneViewLifecycleEvents {
 }
 
 final class PostsListViewModel {
-    private let useCase: GetAllPostsUseCase
     private let cancelBag: CancelBag
+    
+    private let useCase: GetAllPostsUseCase
+    private var posts: [PostEntity]
+    private let openPostDetailsAction: (PostEntity) -> Void
     
     var viewStateSubject: CurrentValueSubject<PostsListViewState, Never>
     
     // MARK: - Initialization
-    init(useCase: GetAllPostsUseCase) {
+    init(useCase: GetAllPostsUseCase, openPostDetailsAction: @escaping (PostEntity) -> Void) {
         self.useCase = useCase
+        self.openPostDetailsAction = openPostDetailsAction
+        self.posts = []
         self.cancelBag = .init()
         self.viewStateSubject = .init(.loading)
     }
@@ -45,6 +50,8 @@ private extension PostsListViewModel {
                 guard let self = self else { return }
                 switch result {
                 case .success(let posts):
+                    self.posts = posts
+                    
                     let props = posts.map({
                         PostsListCellProps(
                             authorID: "Author: \($0.userID)",
@@ -72,6 +79,6 @@ extension PostsListViewModel: PostsListViewModelInput {
     }
     
     func selectPost(at indexPath: IndexPath) {
-        
+        openPostDetailsAction(posts[indexPath.row])
     }
 }
