@@ -47,6 +47,35 @@
             </objects>
             <point key="canvasLocation" x="87.786259541984734" y="3.5211267605633805"/>
         </scene>
+        <!--Post Details View Controller-->
+        <scene sceneID="GiL-mz-TfW">
+            <objects>
+                <viewController storyboardIdentifier="PostDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cfq-Mj-0E6" customClass="PostDetailsViewController" customModule="Breadfast_posts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S01-7w-ZaL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ARK-T0-hRC">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cfN-Cy-H28"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cfN-Cy-H28" firstAttribute="bottom" secondItem="ARK-T0-hRC" secondAttribute="bottom" id="6CL-1P-Imx"/>
+                            <constraint firstItem="ARK-T0-hRC" firstAttribute="leading" secondItem="cfN-Cy-H28" secondAttribute="leading" id="CED-57-hnI"/>
+                            <constraint firstItem="ARK-T0-hRC" firstAttribute="trailing" secondItem="cfN-Cy-H28" secondAttribute="trailing" id="dPo-1S-TDx"/>
+                            <constraint firstItem="ARK-T0-hRC" firstAttribute="top" secondItem="cfN-Cy-H28" secondAttribute="top" id="nKs-KH-smX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ARK-T0-hRC" id="tit-hY-Akv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yEE-x2-fhk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="910.68702290076328" y="3.5211267605633805"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

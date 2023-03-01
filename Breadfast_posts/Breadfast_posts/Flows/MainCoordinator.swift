@@ -32,6 +32,7 @@ final class MainCoordinator: BaseCoordinator {
     }
     
     private func openDetails(for post: PostEntity) {
-        
+        let module = PostDetailsAssembly.make(post: post)
+        router.push(module, animated: true)
     }
 }
