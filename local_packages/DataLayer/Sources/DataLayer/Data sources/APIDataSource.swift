@@ -44,7 +44,6 @@ final class APIDataSource {
                 case .success(let data):
                     guard let responseData = data else {
                         closure(.failure(APIDataSourceError.cantDecodeResponse))
-                        debugPrint("empty response data, for path = \(endpoint.path)")
                         return
                     }
                     do {
@@ -52,10 +51,8 @@ final class APIDataSource {
                         closure(.success(response))
                     } catch let error {
                         closure(.failure(APIDataSourceError.cantDecodeResponse))
-                        debugPrint("cant decode error = \(error.localizedDescription), for path = \(endpoint.path)")
                     }
                 case .failure(let error):
-                    debugPrint("send request error = \(error.localizedDescription), for path = \(endpoint.path)")
                     closure(.failure(APIDataSourceError.somethingWrong))
                 }
             }

@@ -11,24 +11,9 @@ To see documetations for source code — build project `.docc` document
 - CancelBag
 - Publisher+Extension
 
-## Formatters
-- AmountFormatter
-- DateConverter
-
 ## Foundation + Extensions
 - KeyboardEvents+UIViewController
 - NotificationCenter+Extensions
-
-## RemoteImage + Cache
-- RemoteImage
-- RemoteImageCache
-- RemoteImageView
-
-## Tools
-- AttributedTextBuilder
-- EventTimer
-- Haptic
-- JailbreakDetector
 
 ## UIKit + Extensions
 - UICollectionView+Cells
