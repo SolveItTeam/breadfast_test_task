@@ -22,5 +22,9 @@ public extension DataLayer {
         public static func makePosts() -> PostsRepository {
             PostsRepositoryImpl(dataSource: DataLayer.apiDataSource)
         }
+        
+        public static func makeComments() -> CommentsRepository {
+            CommentsRepositoryImpl(dataSource: DataLayer.apiDataSource)
+        }
     }
 }

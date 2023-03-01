@@ -19,4 +19,8 @@ final class DependencyFactory {
     func makeAllPostsUseCase() -> GetAllPostsUseCase {
         DomainLayer.UseCasesFactory.makeAllPosts(DataLayer.RepositoryFactory.makePosts())
     }
+    
+    func makePostCommentsUseCase() -> GetAllPostCommentsUseCase {
+        DomainLayer.UseCasesFactory.makePostComments(DataLayer.RepositoryFactory.makeComments())
+    }
 }
