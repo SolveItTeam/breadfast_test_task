@@ -9,88 +9,80 @@ import UIKit
 import Extensions
 import ArchitectureComponents
 
-final class PostsListViewController: UIViewController {
+final class PostsListViewController: BaseViewController {
     // MARK: - Properties
     var viewModel: PostsListViewModelInput!
-    private let cancelBag = CancelBag()
     private let dataSource = GenericTableViewDataSource<PostsListCellProps>()
     
     // MARK: - @IBOutlet's
     @IBOutlet private weak var noContentView: NoContentView!
-    @IBOutlet private weak var tableView: UITableView!
-    
-    private lazy var refreshControl: UIRefreshControl = {
-        let control = UIRefreshControl()
-        control.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        return control
-    }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        showInitialState()
-        bindToViewState()
         viewModel.viewDidLoad()
     }
     
-    private func setupTableView() {
+    override func setupTableView() {
         dataSource.setup { tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCellWithRegistration(type: PostsListCell.self, indexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithRegistration(
+                type: PostsListCell.self,
+                indexPath: indexPath
+            )
             cell.fill(with: item)
             return cell
         } selectionHandler: { [weak self] indexPath in
             self?.viewModel.selectPost(at: indexPath)
         }
         
-        tableView.refreshControl = refreshControl
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
     }
     
-    // MARK: - Actions
-    @objc private func pullToRefresh() {
-        viewModel.reloadPosts()
-    }
-}
-
-// MARK: - State management
-private extension PostsListViewController {
-    func showTableView() {
-        tableView.isHidden = false
-        noContentView.isHidden = true
+    override func setupInitialState() {
+        showLoadingState()
     }
     
-    func showInitialState() {
-        refreshControl.beginRefreshing()
-        noContentView.isHidden = true
-    }
-    
-    func bindToViewState() {
+    override func bindToViewState() {
         viewModel
             .viewStateSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] viewState in
                 switch viewState {
                 case .error(let text):
-                    self?.refreshControl.endRefreshing()
-                    self?.showErrorAlert(message: text)
+                    self?.showError(text)
                 case .content(let items):
-                    self?.refreshControl.endRefreshing()
-                    self?.dataSource.updateItems(items)
-                    self?.tableView.reloadData()
-                    
-                    if items.isEmpty {
-                        self?.tableView.isHidden = true
-                        self?.noContentView.isHidden = false
-                    } else {
-                        self?.showTableView()
-                    }
+                    self?.showContent(items)
                 case .loading:
-                    self?.refreshControl.beginRefreshing()
-                    self?.showTableView()
+                    self?.showLoadingState()
                 }
             }
             .store(in: cancelBag)
+    }
+    
+    // MARK: - Actions
+    override func pullToRefreshTrigerred() {
+        viewModel.reloadPosts()
+    }
+}
+
+// MARK: - State management
+private extension PostsListViewController {
+    func showError(_ text: String) {
+        showErrorAlert(message: text)
+        tableView.refreshControl?.endRefreshing()
+    }
+    
+    func showLoadingState() {
+        tableView.refreshControl?.beginRefreshing()
+        tableView.isHidden = false
+        noContentView.isHidden = true
+    }
+    
+    func showContent(_ items: [PostsListCellProps]) {
+        tableView.refreshControl?.endRefreshing()
+        dataSource.updateItems(items)
+        tableView.reloadData()
+        tableView.isHidden = items.isEmpty
     }
 }

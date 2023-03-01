@@ -19,7 +19,7 @@ final class NoContentView: UIView {
     @IBOutlet
     private weak var textLabel: UILabel! {
         didSet {
-            textLabel.text = "No posts"
+            textLabel.text = Localization.noPosts.rawValue
         }
     }
     

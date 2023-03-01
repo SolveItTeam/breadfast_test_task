@@ -8,5 +8,7 @@
 import Foundation
 
 enum Localization: String {
-    case somethingWrong = "Something wrong"
+    case loading = "Loading..."
+    case noPosts = "No posts"
+    case somethingWrongError = "Something wrong"
 }

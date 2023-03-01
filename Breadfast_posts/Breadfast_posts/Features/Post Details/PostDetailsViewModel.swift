@@ -44,7 +44,7 @@ final class PostDetailsViewModel {
 extension PostDetailsViewModel: PostDetailsViewModelInput {
     private func makeRows(from comments: [PostCommentEntity], post: PostEntity) -> [PostDetailsViewRows] {
         let postProps = PostsListCellProps(
-            authorID: "Author #\(self.post.userID)",
+            authorID: "Author ID:\(self.post.userID)",
             title: self.post.title,
             content: self.post.content
         )
@@ -67,7 +67,7 @@ extension PostDetailsViewModel: PostDetailsViewModelInput {
                     let rows = self.makeRows(from: comments, post: self.post)
                     self.viewStateSubject.value = .content(data: rows)
                 case .failure:
-                    self.viewStateSubject.value = .error(error: Localization.somethingWrong.rawValue)
+                    self.viewStateSubject.value = .error(error: Localization.somethingWrongError.rawValue)
                 }
                 
             }

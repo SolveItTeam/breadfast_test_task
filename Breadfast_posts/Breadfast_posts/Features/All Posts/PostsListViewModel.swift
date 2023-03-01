@@ -54,14 +54,14 @@ private extension PostsListViewModel {
                     
                     let props = posts.map({
                         PostsListCellProps(
-                            authorID: "Author: \($0.userID)",
+                            authorID: "Author ID: \($0.userID)",
                             title: $0.title,
                             content: $0.content
                         )
                     })
                     self.viewStateSubject.value = .content(data: props)
                 case .failure:
-                    self.viewStateSubject.value = .error(error: Localization.somethingWrong.rawValue)
+                    self.viewStateSubject.value = .error(error: Localization.somethingWrongError.rawValue)
                 }
             }
             .store(in: cancelBag)
