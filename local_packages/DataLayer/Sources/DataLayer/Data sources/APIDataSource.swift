@@ -80,9 +80,9 @@ final class APIDataSource {
     
     private func makePaginationEntity(from response: HTTPURLResponse) -> PaginationStateEntity? {
         guard
-            let currentPageString = response.value(forHTTPHeaderField: "x-pagination-page"),
+            let currentPageString = response.value(forHTTPHeaderField: PaginationKeys.responseHeaderCurrentPage.rawValue),
             let currentPage = Int(currentPageString),
-            let totalPagesString = response.value(forHTTPHeaderField: "x-pagination-pages"),
+            let totalPagesString = response.value(forHTTPHeaderField: PaginationKeys.responseHeaderTotalPages.rawValue),
             let totalPages = Int(totalPagesString)
         else {
             return nil

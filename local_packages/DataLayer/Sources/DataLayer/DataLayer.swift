@@ -5,6 +5,8 @@ import Foundation
 public struct DataLayer {
     private static var apiDataSource: APIDataSource!
     
+    static let itemsPerPage = 20
+    
     public static func set(baseURL: URL, token: String) {
         apiDataSource = .init(
             token: token,

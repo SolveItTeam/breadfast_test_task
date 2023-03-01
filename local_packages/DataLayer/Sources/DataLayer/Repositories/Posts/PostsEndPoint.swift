@@ -7,7 +7,7 @@ enum PostsEndPoint: EndPointType {
     var path: String {
         switch self {
         case .getAllPosts(let page):
-            return "posts?page=\(page)&per_page=20"
+            return "posts?page=\(page)&\(PaginationKeys.requestPath.rawValue)=\(DataLayer.itemsPerPage)"
         }
     }
     
