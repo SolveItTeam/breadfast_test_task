@@ -29,6 +29,7 @@ final class PostsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        showInitialState()
         bindToViewState()
         viewModel.viewDidLoad()
     }
@@ -51,18 +52,29 @@ final class PostsListViewController: UIViewController {
     @objc private func pullToRefresh() {
         viewModel.reloadPosts()
     }
+}
+
+// MARK: - State management
+private extension PostsListViewController {
+    func showTableView() {
+        tableView.isHidden = false
+        noContentView.isHidden = true
+    }
     
-    // MARK: - State management
-    private func bindToViewState() {
+    func showInitialState() {
+        refreshControl.beginRefreshing()
+        noContentView.isHidden = true
+    }
+    
+    func bindToViewState() {
         viewModel
             .viewStateSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] viewState in
                 switch viewState {
-                case .error:
+                case .error(let text):
                     self?.refreshControl.endRefreshing()
-                    //TODO: Implement
-                    break
+                    self?.showErrorAlert(message: text)
                 case .content(let items):
                     self?.refreshControl.endRefreshing()
                     self?.dataSource.updateItems(items)
@@ -72,11 +84,11 @@ final class PostsListViewController: UIViewController {
                         self?.tableView.isHidden = true
                         self?.noContentView.isHidden = false
                     } else {
-                        self?.tableView.isHidden = false
-                        self?.noContentView.isHidden = true
+                        self?.showTableView()
                     }
                 case .loading:
                     self?.refreshControl.beginRefreshing()
+                    self?.showTableView()
                 }
             }
             .store(in: cancelBag)

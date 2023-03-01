@@ -12,7 +12,7 @@ final class NoContentView: UIView {
     @IBOutlet
     private weak var imageView: UIImageView! {
         didSet {
-            imageView.image = .init(systemName: "list.bullet.rectangle.portrait")
+            imageView.image = Images.noContent.value
         }
     }
     

@@ -54,7 +54,7 @@ private extension PostsListViewModel {
                     })
                     self.viewStateSubject.value = .content(data: props)
                 case .failure:
-                    self.viewStateSubject.value = .error(error: "SOMETHING WRONG")
+                    self.viewStateSubject.value = .error(error: Localization.somethingWrong)
                 }
             }
             .store(in: cancelBag)
