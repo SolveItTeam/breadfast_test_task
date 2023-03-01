@@ -49,10 +49,10 @@ final class APIDataSource {
                     do {
                         let response = try self.mapper.map(response, from: responseData)
                         closure(.success(response))
-                    } catch let error {
+                    } catch {
                         closure(.failure(APIDataSourceError.cantDecodeResponse))
                     }
-                case .failure(let error):
+                case .failure:
                     closure(.failure(APIDataSourceError.somethingWrong))
                 }
             }
