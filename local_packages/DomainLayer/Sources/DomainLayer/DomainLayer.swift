@@ -13,5 +13,9 @@ public extension DomainLayer {
         public static func makeAllPosts(_ repository: PostsRepository) -> GetAllPostsUseCase {
             GetAllPostsUseCaseImpl(repository: repository)
         }
+        
+        public static func makePostComments(_ repository: CommentsRepository) -> GetAllPostCommentsUseCase {
+            GetAllPostCommentsUseCaseImpl(repository: repository)
+        }
     }
 }
