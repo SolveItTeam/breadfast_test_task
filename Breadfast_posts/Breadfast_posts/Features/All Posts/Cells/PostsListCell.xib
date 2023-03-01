@@ -16,41 +16,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFs-He-E3z">
-                        <rect key="frame" x="20" y="15" width="353" height="23"/>
+                        <rect key="frame" x="20" y="41" width="353" height="29"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhL-DE-Xft">
-                        <rect key="frame" x="20" y="48" width="353" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: ###1234" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5P-OE-nQv">
+                        <rect key="frame" x="20" y="13" width="353" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="7uD-9U-msa"/>
+                            <constraint firstAttribute="height" constant="21" id="uRK-4g-K92"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: ###1234" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5P-OE-nQv">
-                        <rect key="frame" x="20" y="77" width="353" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="6nb-hm-SJb"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhL-DE-Xft">
+                        <rect key="frame" x="20" y="78" width="353" height="19"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="EFs-He-E3z" secondAttribute="trailing" constant="20" symbolic="YES" id="5aj-kl-fEC"/>
-                    <constraint firstItem="bhL-DE-Xft" firstAttribute="leading" secondItem="bbz-cv-Xi9" secondAttribute="leading" constant="20" symbolic="YES" id="Fdc-en-oGF"/>
-                    <constraint firstItem="EFs-He-E3z" firstAttribute="leading" secondItem="bbz-cv-Xi9" secondAttribute="leading" constant="20" symbolic="YES" id="I1Z-AQ-9gE"/>
-                    <constraint firstItem="C5P-OE-nQv" firstAttribute="top" secondItem="bhL-DE-Xft" secondAttribute="bottom" constant="9" id="Kyq-qq-S67"/>
-                    <constraint firstItem="C5P-OE-nQv" firstAttribute="leading" secondItem="bbz-cv-Xi9" secondAttribute="leading" constant="20" symbolic="YES" id="WJR-RT-zvR"/>
-                    <constraint firstItem="EFs-He-E3z" firstAttribute="top" secondItem="bbz-cv-Xi9" secondAttribute="top" constant="15" id="XN8-QT-Whd"/>
-                    <constraint firstAttribute="bottom" secondItem="C5P-OE-nQv" secondAttribute="bottom" constant="15" id="bXn-qb-Dnr"/>
-                    <constraint firstItem="bhL-DE-Xft" firstAttribute="top" secondItem="EFs-He-E3z" secondAttribute="bottom" constant="10" id="foK-cx-NVK"/>
-                    <constraint firstAttribute="trailing" secondItem="bhL-DE-Xft" secondAttribute="trailing" constant="20" symbolic="YES" id="ggA-jE-QwX"/>
-                    <constraint firstAttribute="trailing" secondItem="C5P-OE-nQv" secondAttribute="trailing" constant="20" symbolic="YES" id="oNC-Gd-9KG"/>
+                    <constraint firstItem="EFs-He-E3z" firstAttribute="leading" secondItem="bbz-cv-Xi9" secondAttribute="leading" constant="20" symbolic="YES" id="39R-us-amu"/>
+                    <constraint firstAttribute="trailing" secondItem="C5P-OE-nQv" secondAttribute="trailing" constant="20" symbolic="YES" id="4Eg-tE-Qb8"/>
+                    <constraint firstItem="EFs-He-E3z" firstAttribute="top" secondItem="C5P-OE-nQv" secondAttribute="bottom" constant="7" id="4Mp-HY-sWy"/>
+                    <constraint firstAttribute="trailing" secondItem="EFs-He-E3z" secondAttribute="trailing" constant="20" symbolic="YES" id="4le-1r-FTN"/>
+                    <constraint firstAttribute="trailing" secondItem="bhL-DE-Xft" secondAttribute="trailing" constant="20" id="7In-XW-Kt0"/>
+                    <constraint firstItem="bhL-DE-Xft" firstAttribute="top" secondItem="EFs-He-E3z" secondAttribute="bottom" constant="7.6666666666666714" id="85k-fh-Xgk"/>
+                    <constraint firstItem="C5P-OE-nQv" firstAttribute="top" secondItem="bbz-cv-Xi9" secondAttribute="top" constant="13" id="AwV-lg-1CH"/>
+                    <constraint firstItem="C5P-OE-nQv" firstAttribute="leading" secondItem="bbz-cv-Xi9" secondAttribute="leading" constant="20" symbolic="YES" id="EXN-4g-es6"/>
+                    <constraint firstAttribute="bottom" secondItem="bhL-DE-Xft" secondAttribute="bottom" constant="16" id="KUo-ss-lbR"/>
+                    <constraint firstItem="bhL-DE-Xft" firstAttribute="leading" secondItem="bbz-cv-Xi9" secondAttribute="leading" constant="20" id="gwV-h6-Lcc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

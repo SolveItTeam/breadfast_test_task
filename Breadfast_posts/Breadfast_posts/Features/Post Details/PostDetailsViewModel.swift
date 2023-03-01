@@ -11,12 +11,12 @@ import DomainLayer
 import ArchitectureComponents
 import Extensions
 
-enum PostDetailsViewRows: Hashable {
-    case post(PostsListCellProps)
-    case comment(PostCommentCellProps)
+enum PostDetailsViewSections: Hashable {
+    case post([PostsListCellProps])
+    case comments([PostCommentCellProps])
 }
 
-typealias PostDetailsViewState = LoadableSceneState<[PostDetailsViewRows]>
+typealias PostDetailsViewState = LoadableSceneState<[PostDetailsViewSections]>
 
 protocol PostDetailsViewModelInput: SceneViewLifecycleEvents {
     var title: String { get }
@@ -43,20 +43,18 @@ final class PostDetailsViewModel {
 
 // MARK: - State building
 private extension PostDetailsViewModel {
-    func makePostRow(_ post: PostEntity) -> PostDetailsViewRows {
+    func makePostSection(_ post: PostEntity) -> PostDetailsViewSections {
         let props = PostsListCellProps(
             authorID: post.userID,
             title: post.title,
             content: post.content
         )
-        return .post(props)
+        return .post([props])
     }
     
-    func makeCommentRows(_ comments: [PostCommentEntity]) -> [PostDetailsViewRows] {
-        comments
-            .lazy
-            .map { PostCommentCellProps(authorName: $0.name, content: $0.content) }
-            .map({ PostDetailsViewRows.comment($0) })
+    func makeCommentSection(_ comments: [PostCommentEntity]) -> PostDetailsViewSections {
+        let rows = comments.map { PostCommentCellProps(authorName: $0.name, content: $0.content) }
+        return .comments(rows)
     }
 }
 
@@ -70,16 +68,16 @@ private extension PostDetailsViewModel {
                 guard let self = self else { return }
                 switch result {
                 case .success(let comments):
-                    let commentRows = self.makeCommentRows(comments)
+                    let commentSection = self.makeCommentSection(comments)
                     let newState = self.viewStateSubject.value
                     switch self.viewStateSubject.value {
-                    case .content(let rows):
-                        var newRows = rows + commentRows
-                        self.viewStateSubject.value = .content(data: newRows)
+                    case .content(let sections):
+                        let newSections = sections + [commentSection]
+                        self.viewStateSubject.value = .content(data: newSections)
+                        break
                     default:
-                        let postRow = self.makePostRow(post)
-                        let rows = [postRow] + commentRows
-                        self.viewStateSubject.value = .content(data: rows)
+                        let postSection = self.makePostSection(post)
+                        self.viewStateSubject.value = .content(data: [postSection, commentSection])
                     }
                 case .failure:
                     self.viewStateSubject.value = .error(error: Localization.somethingWrongError.rawValue)
@@ -93,7 +91,7 @@ private extension PostDetailsViewModel {
 // MARK: - PostCommentsViewModelInput
 extension PostDetailsViewModel: PostDetailsViewModelInput {
     func viewDidLoad() {
-        let postRow = makePostRow(post)
+        let postRow = makePostSection(post)
         viewStateSubject.value = .content(data: [postRow])
         loadFor(post: post)
     }

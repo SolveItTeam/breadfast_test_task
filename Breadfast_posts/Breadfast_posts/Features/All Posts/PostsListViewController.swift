@@ -12,7 +12,7 @@ import ArchitectureComponents
 final class PostsListViewController: BaseViewController {
     // MARK: - Properties
     var viewModel: PostsListViewModelInput!
-    private let dataSource = GenericTableViewDataSource<PostsListCellProps>()
+    private let tableViewDataSource = AllPostsTableDataSource()
     
     // MARK: - @IBOutlet's
     @IBOutlet private weak var noContentView: NoContentView!
@@ -26,19 +26,11 @@ final class PostsListViewController: BaseViewController {
     
     // MARK: - Setup
     override func setupDataSource() {
-        dataSource.setup { tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCellWithRegistration(
-                type: PostsListCell.self,
-                indexPath: indexPath
-            )
-            cell.fill(with: item)
-            return cell
-        } selectionHandler: { [weak self] indexPath in
+        tableViewDataSource.selectionHandler = { [weak self] indexPath in
             self?.viewModel.selectPost(at: indexPath)
         }
-        
-        tableView.dataSource = dataSource
-        tableView.delegate = dataSource
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDataSource
     }
     
     override func setupInitialState() {
@@ -84,7 +76,7 @@ private extension PostsListViewController {
     
     func showContent(_ items: [PostsListCellProps]) {
         tableView.refreshControl?.endRefreshing()
-        dataSource.updateItems(items)
+        tableViewDataSource.items = items
         tableView.reloadData()
         tableView.isHidden = items.isEmpty
     }

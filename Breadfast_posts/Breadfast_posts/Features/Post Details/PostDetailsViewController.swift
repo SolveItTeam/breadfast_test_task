@@ -10,7 +10,7 @@ import Extensions
 
 final class PostDetailsViewController: BaseViewController {
     var viewModel: PostDetailsViewModelInput!
-    private let dataSource = GenericTableViewDataSource<PostDetailsViewRows>()
+    private let tableDataSource = PostDetailsTableDataSource()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -21,27 +21,7 @@ final class PostDetailsViewController: BaseViewController {
     
     // MARK: - Setup
     override func setupDataSource() {
-        tableView.delegate = dataSource
-        tableView.dataSource = dataSource
-        dataSource.setup(cellFactory: { tableView, indexPath, item in
-            switch item {
-            case .post(let props):
-                let cell = tableView.dequeueReusableCellWithRegistration(
-                    type: PostFullContentCell.self,
-                    indexPath: indexPath
-                )
-                cell.fill(with: props)
-                return cell
-            case .comment(let props):
-                let cell = tableView.dequeueReusableCellWithRegistration(
-                    type: PostCommentCell.self,
-                    indexPath: indexPath
-                )
-                cell.fill(with: props)
-                return cell
-            }
-            
-        }, selectionHandler: nil)
+        tableView.dataSource = tableDataSource
     }
     
     override func setupInitialState() {
@@ -56,8 +36,8 @@ final class PostDetailsViewController: BaseViewController {
             .sink { [weak self] viewState in
                 guard let self = self else { return }
                 switch viewState {
-                case .content(let rows):
-                    self.dataSource.updateItems(rows)
+                case .content(let sections):
+                    self.tableDataSource.sections = sections
                     self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 case .error(let message):
