@@ -8,7 +8,7 @@
 import UIKit
 import Extensions
 
-struct PostsListCellProps {
+struct PostsListCellProps: Hashable {
     let authorID: String
     let title: String
     let content: String
@@ -16,14 +16,9 @@ struct PostsListCellProps {
 
 final class PostsListCell: UITableViewCell {
     // MARK: - @IBOutlet's
-    @IBOutlet
-    private weak var authorIDLabel: UILabel!
-    
-    @IBOutlet
-    private weak var titleLabel: UILabel!
-    
-    @IBOutlet
-    private weak var contentLabel: UILabel!
+    @IBOutlet private weak var authorIDLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
     
     // MARK: - Lifecycle
     override func awakeFromNib() {

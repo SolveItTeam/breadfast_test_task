@@ -24,6 +24,7 @@ final class MainCoordinator: BaseCoordinator {
     
     // MARK: - Flow
     override func start() {
-        
+        let module = PostsListAssembly.make()
+        router.set(controllers: [module])
     }
 }
