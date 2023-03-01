@@ -10,11 +10,8 @@ To see documetations for source code — build project `.docc` document
 
 ## Structure
 - Repositories
-    - TokenRepository — storage for API tokens
-    - SettingsStorage — storage for user settings
-    - PushNotificationsTokenRepository - provide APNS token
+    - `PostsRepository` — provides an access to list of all available posts
 - Use cases
-    - AmountFormatUseCase — format different amounts
-    - DateFormatUseCase — format string to date or date to string
-    - UserSessionUseCase — manage all details about user session
+    - `GetAllPostsUseCase` — implements business requirement for load all available posts 
+    
 

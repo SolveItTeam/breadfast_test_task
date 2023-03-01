@@ -16,6 +16,10 @@ let package = Package(
         .target(
             name: "DomainLayer",
             dependencies: []
+        ),
+        .testTarget(
+            name: "DomainLayerTests",
+            dependencies: ["DomainLayer"]
         )
     ]
 )
