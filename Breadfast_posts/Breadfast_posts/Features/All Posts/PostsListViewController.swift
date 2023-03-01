@@ -15,7 +15,7 @@ final class PostsListViewController: UIViewController {
     private let cancelBag = CancelBag()
     private let dataSource = GenericTableViewDataSource<PostsListCellProps>()
     
-    // MARK: - UI
+    // MARK: - @IBOutlet's
     @IBOutlet private weak var noContentView: NoContentView!
     @IBOutlet private weak var tableView: UITableView!
     
