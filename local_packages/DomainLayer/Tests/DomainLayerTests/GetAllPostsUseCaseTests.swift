@@ -38,14 +38,18 @@ final class GetAllPostsUseCaseTests: XCTestCase {
     }
     
     private func run(_ scenario: Scenario, shouldBeEmpty expectedResult: Bool) {
-        let repository = PostsRepositoryMock(scenario: scenario)
-        let useCase = DomainLayer.UseCasesFactory.makeAllPosts(repository)
+        let postsRepository = PostsRepositoryMock(scenario: scenario)
+        let userRepostiory = UserRepositoryMock()
+        let useCase = DomainLayer.UseCasesFactory.makeAllPosts(
+            postsRepository: postsRepository,
+            userRepostiory: userRepostiory
+        )
         
         useCase
-            .invoke()
-            .sink(receiveCompletion: { _ in }) { posts in
+            .invoke(pageNumber: 1)
+            .sink(receiveCompletion: { _ in }) { response in
                 print("value in emptyPosts")
-                XCTAssertEqual(posts.isEmpty, expectedResult)
+                XCTAssertEqual(response.payload.isEmpty, expectedResult)
             }
             .store(in: &cancellables)
     }
@@ -59,13 +63,17 @@ private final class PostsRepositoryMock: PostsRepository {
         self.scenario = scenario
     }
     
-    func getAll() -> AnyPublisher<[PostEntity], Error> {
-        Future<[PostEntity], Error> { [weak self] closure in
+    func getAll(page: Int) -> AnyPublisher<PaginatedEntity<[PostEntity]>, Error> {
+        Future<PaginatedEntity<[PostEntity]>, Error> { [weak self] closure in
             guard let self = self else { return }
             
             switch self.scenario {
             case .emptyPosts:
-                closure(.success([]))
+                let response = PaginatedEntity<[PostEntity]>.init(
+                    pagination: .init(currentPage: 1, totalPages: 1),
+                    payload: []
+                )
+                closure(.success(response))
             case .nonEmptyPosts:
                 let range = 0..<20
                 let items = range.map { i in
@@ -76,8 +84,22 @@ private final class PostsRepositoryMock: PostsRepository {
                         content: "Post content \(0)"
                     )
                 }
-                closure(.success(items))
+                let response = PaginatedEntity<[PostEntity]>.init(
+                    pagination: .init(currentPage: 1, totalPages: 10),
+                    payload: items
+                )
+                closure(.success(response))
             }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+private final class UserRepositoryMock: UserRepository {
+    func getBy(_ id: UserEntity.ID) -> AnyPublisher<UserEntity, Never> {
+        Future<UserEntity, Never> { closure in
+            let entity = UserEntity(id: id, name: "Name \(id)", email: "email \(id)")
+            closure(.success(entity))
         }
         .eraseToAnyPublisher()
     }
