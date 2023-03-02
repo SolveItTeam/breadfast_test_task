@@ -28,6 +28,10 @@ List posts from: https://gorest.co.in/public/v2/posts
 When user click on post card show details page with the post on top and list of comments below
 
 # Solution
+
+## Estimation
+10 hours
+
 ## Architecture
 The whole app splitted into 3 layers:
 - Domain
