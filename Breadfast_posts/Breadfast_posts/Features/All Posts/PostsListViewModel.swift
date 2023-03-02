@@ -56,9 +56,6 @@ private extension PostsListViewModel {
                 guard let self = self else { return }
                 switch result {
                 case .success(let response):
-                    if let paginationUpdate = response.pagination {
-                        self.paginationCursor.update(paginationUpdate)
-                    }
                     self.posts += response.payload
                     let cellProps = self.posts.map { entity in
                         PostsListCellProps(
@@ -69,6 +66,9 @@ private extension PostsListViewModel {
                         )
                     }
                     self.viewStateSubject.value = .content(data: cellProps)
+                    if let paginationUpdate = response.pagination {
+                        self.paginationCursor.update(paginationUpdate)
+                    }
                 case .failure:
                     self.viewStateSubject.value = .error(error: Localization.somethingWrongError.rawValue)
                 }
@@ -92,12 +92,12 @@ extension PostsListViewModel: PostsListViewModelInput {
     }
     
     func requestNextPostsPage() {
-//        switch viewStateSubject.value {
-//        case .content:
-//            loadPosts()
-//        default:
-//            break
-//        }
+        switch viewStateSubject.value {
+        case .content:
+            loadPosts()
+        default:
+            break
+        }
     }
     
     func selectPost(at indexPath: IndexPath) {
