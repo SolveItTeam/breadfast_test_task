@@ -31,7 +31,7 @@ final class MainCoordinator: BaseCoordinator {
         router.set(controllers: [module])
     }
     
-    private func openDetails(for post: PostEntity) {
+    private func openDetails(for post: TimelinePostEntity) {
         let module = PostDetailsAssembly.make(post: post)
         router.push(module, animated: true)
     }

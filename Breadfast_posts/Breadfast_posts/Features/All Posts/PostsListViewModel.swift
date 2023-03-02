@@ -26,14 +26,14 @@ final class PostsListViewModel {
     
     private let useCase: GetAllPostsUseCase
     private var paginationCursor: PaginationCursor
-    private var posts: [PostEntity]
+    private var posts: [TimelinePostEntity]
     
-    private let openPostDetailsAction: (PostEntity) -> Void
+    private let openPostDetailsAction: (TimelinePostEntity) -> Void
     
     var viewStateSubject: CurrentValueSubject<PostsListViewState, Never>
     
     // MARK: - Initialization
-    init(useCase: GetAllPostsUseCase, openPostDetailsAction: @escaping (PostEntity) -> Void) {
+    init(useCase: GetAllPostsUseCase, openPostDetailsAction: @escaping (TimelinePostEntity) -> Void) {
         self.useCase = useCase
         self.posts = []
         
@@ -60,15 +60,15 @@ private extension PostsListViewModel {
                         self.paginationCursor.update(paginationUpdate)
                     }
                     self.posts += response.payload
-                    
-                    let props = self.posts.map({
+                    let cellProps = self.posts.map { entity in
                         PostsListCellProps(
-                            authorID: $0.userID,
-                            title: $0.title,
-                            content: $0.content
+                            authorName: entity.user.name,
+                            authorEmail: entity.user.email,
+                            title: entity.item.title,
+                            content: entity.item.content
                         )
-                    })
-                    self.viewStateSubject.value = .content(data: props)
+                    }
+                    self.viewStateSubject.value = .content(data: cellProps)
                 case .failure:
                     self.viewStateSubject.value = .error(error: Localization.somethingWrongError.rawValue)
                 }
@@ -92,12 +92,12 @@ extension PostsListViewModel: PostsListViewModelInput {
     }
     
     func requestNextPostsPage() {
-        switch viewStateSubject.value {
-        case .content:
-            loadPosts()
-        default:
-            break
-        }
+//        switch viewStateSubject.value {
+//        case .content:
+//            loadPosts()
+//        default:
+//            break
+//        }
     }
     
     func selectPost(at indexPath: IndexPath) {

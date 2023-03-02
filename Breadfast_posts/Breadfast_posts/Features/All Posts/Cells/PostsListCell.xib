@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhL-DE-Xft">
-                        <rect key="frame" x="20" y="78" width="353" height="19"/>
+                        <rect key="frame" x="20" y="77.666666666666671" width="353" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -51,7 +50,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="authorIDLabel" destination="C5P-OE-nQv" id="MKL-im-1Xu"/>
+                <outlet property="authorLabel" destination="C5P-OE-nQv" id="MKL-im-1Xu"/>
                 <outlet property="contentLabel" destination="bhL-DE-Xft" id="9S3-ko-0p3"/>
                 <outlet property="titleLabel" destination="EFs-He-E3z" id="UO0-mK-lis"/>
             </connections>

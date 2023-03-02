@@ -10,8 +10,11 @@ public extension DomainLayer {
     struct UseCasesFactory {
         private init(){}
         
-        public static func makeAllPosts(_ repository: PostsRepository) -> GetAllPostsUseCase {
-            GetAllPostsUseCaseImpl(repository: repository)
+        public static func makeAllPosts(postsRepository: PostsRepository, userRepostiory: UserRepository) -> GetAllPostsUseCase {
+            GetAllPostsUseCaseImpl(
+                postsRepository: postsRepository,
+                userRepository: userRepostiory
+            )
         }
         
         public static func makePostComments(_ repository: CommentsRepository) -> GetAllPostCommentsUseCase {

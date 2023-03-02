@@ -11,7 +11,7 @@ import DomainLayer
 struct PostDetailsAssembly {
     private init() {}
     
-    static func make(post: PostEntity) -> UIViewController {
+    static func make(post: TimelinePostEntity) -> UIViewController {
         let viewController = UIStoryboard.main.load(PostDetailsViewController.self)
         let viewModel = PostDetailsViewModel(
             post: post,

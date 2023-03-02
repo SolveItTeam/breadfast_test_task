@@ -25,15 +25,15 @@ protocol PostDetailsViewModelInput: SceneViewLifecycleEvents {
 }
 
 final class PostDetailsViewModel {
-    private let post: PostEntity
+    private let post: TimelinePostEntity
     private let useCase: GetAllPostCommentsUseCase
     private let cancelBag: CancelBag
     
-    var title: String { post.title }
+    var title: String { post.item.title }
     var viewStateSubject: CurrentValueSubject<PostDetailsViewState, Never>
     
     //MARK: - Initialization
-    init(post: PostEntity, useCase: GetAllPostCommentsUseCase) {
+    init(post: TimelinePostEntity, useCase: GetAllPostCommentsUseCase) {
         self.post = post
         self.useCase = useCase
         self.cancelBag = .init()
@@ -43,11 +43,12 @@ final class PostDetailsViewModel {
 
 // MARK: - State building
 private extension PostDetailsViewModel {
-    func makePostSection(_ post: PostEntity) -> PostDetailsViewSections {
+    func makePostSection(_ post: TimelinePostEntity) -> PostDetailsViewSections {
         let props = PostsListCellProps(
-            authorID: post.userID,
-            title: post.title,
-            content: post.content
+            authorName: post.user.name,
+            authorEmail: post.user.email,
+            title: post.item.title,
+            content: post.item.content
         )
         return .post([props])
     }
@@ -60,9 +61,9 @@ private extension PostDetailsViewModel {
 
 // MARK: - Data flow
 private extension PostDetailsViewModel {
-    func loadFor(post: PostEntity) {
+    func loadFor(post: TimelinePostEntity) {
         useCase
-            .invoke(postID: post.id)
+            .invoke(postID: post.item.id)
             .toResult()
             .sink { [weak self] result in
                 guard let self = self else { return }

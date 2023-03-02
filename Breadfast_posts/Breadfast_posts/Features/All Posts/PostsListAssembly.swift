@@ -11,7 +11,7 @@ import DomainLayer
 struct PostsListAssembly {
     private init(){}
     
-    static func make(openPostDetailsAction: @escaping (PostEntity) -> Void) -> UIViewController {
+    static func make(openPostDetailsAction: @escaping (TimelinePostEntity) -> Void) -> UIViewController {
         let viewController = UIStoryboard.main.load(PostsListViewController.self)
         let viewModel = PostsListViewModel(
             useCase: DependencyFactory.shared.makeAllPostsUseCase(),

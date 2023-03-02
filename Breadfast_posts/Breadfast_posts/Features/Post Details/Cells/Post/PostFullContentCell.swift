@@ -10,7 +10,7 @@ import Extensions
 
 final class PostFullContentCell: UITableViewCell {
     // MARK: - @IBOutlet's
-    @IBOutlet private weak var authorIDLabel: UILabel!
+    @IBOutlet private weak var authorInfoLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var contentLabel: UILabel!
     
@@ -26,7 +26,7 @@ extension PostFullContentCell: ConfigurableTableNibCell {
     typealias Props = PostsListCellProps
     
     func fill(with props: PostsListCellProps) {
-        authorIDLabel.text = props.localizedAuthorID
+        authorInfoLabel.text = props.fullAuthorInfo
         titleLabel.text = props.title
         contentLabel.text = props.content
     }
