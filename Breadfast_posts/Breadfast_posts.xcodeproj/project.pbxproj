@@ -42,23 +42,6 @@
 		55B1FF7E29AFA2A300A5DB4E /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1FF7D29AFA2A300A5DB4E /* Localization.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5511B22C29AF5F04000B4B13 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5511B20D29AF5F02000B4B13 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5511B21429AF5F02000B4B13;
-			remoteInfo = Breadfast_posts;
-		};
-		5511B23629AF5F04000B4B13 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5511B20D29AF5F02000B4B13 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5511B21429AF5F02000B4B13;
-			remoteInfo = Breadfast_posts;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		5511B21529AF5F02000B4B13 /* Breadfast_posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breadfast_posts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5511B21829AF5F02000B4B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,8 +50,6 @@
 		5511B22129AF5F03000B4B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5511B22429AF5F03000B4B13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5511B22629AF5F03000B4B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5511B22B29AF5F04000B4B13 /* Breadfast_postsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Breadfast_postsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5511B23529AF5F04000B4B13 /* Breadfast_postsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Breadfast_postsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		552FFC5229B00008005393B0 /* PaginationCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationCursor.swift; sourceTree = "<group>"; };
 		554679BE29AF6133001AFF98 /* ArchitectureComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ArchitectureComponents; path = ../local_packages/ArchitectureComponents; sourceTree = "<group>"; };
 		554679BF29AF6146001AFF98 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Extensions; path = ../local_packages/Extensions; sourceTree = "<group>"; };
@@ -111,20 +92,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5511B22829AF5F04000B4B13 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5511B23229AF5F04000B4B13 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -143,8 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				5511B21529AF5F02000B4B13 /* Breadfast_posts.app */,
-				5511B22B29AF5F04000B4B13 /* Breadfast_postsTests.xctest */,
-				5511B23529AF5F04000B4B13 /* Breadfast_postsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -333,42 +298,6 @@
 			productReference = 5511B21529AF5F02000B4B13 /* Breadfast_posts.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5511B22A29AF5F04000B4B13 /* Breadfast_postsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5511B24229AF5F04000B4B13 /* Build configuration list for PBXNativeTarget "Breadfast_postsTests" */;
-			buildPhases = (
-				5511B22729AF5F04000B4B13 /* Sources */,
-				5511B22829AF5F04000B4B13 /* Frameworks */,
-				5511B22929AF5F04000B4B13 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5511B22D29AF5F04000B4B13 /* PBXTargetDependency */,
-			);
-			name = Breadfast_postsTests;
-			productName = Breadfast_postsTests;
-			productReference = 5511B22B29AF5F04000B4B13 /* Breadfast_postsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		5511B23429AF5F04000B4B13 /* Breadfast_postsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5511B24529AF5F04000B4B13 /* Build configuration list for PBXNativeTarget "Breadfast_postsUITests" */;
-			buildPhases = (
-				5511B23129AF5F04000B4B13 /* Sources */,
-				5511B23229AF5F04000B4B13 /* Frameworks */,
-				5511B23329AF5F04000B4B13 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5511B23729AF5F04000B4B13 /* PBXTargetDependency */,
-			);
-			name = Breadfast_postsUITests;
-			productName = Breadfast_postsUITests;
-			productReference = 5511B23529AF5F04000B4B13 /* Breadfast_postsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -381,14 +310,6 @@
 				TargetAttributes = {
 					5511B21429AF5F02000B4B13 = {
 						CreatedOnToolsVersion = 14.2;
-					};
-					5511B22A29AF5F04000B4B13 = {
-						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 5511B21429AF5F02000B4B13;
-					};
-					5511B23429AF5F04000B4B13 = {
-						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 5511B21429AF5F02000B4B13;
 					};
 				};
 			};
@@ -406,8 +327,6 @@
 			projectRoot = "";
 			targets = (
 				5511B21429AF5F02000B4B13 /* Breadfast_posts */,
-				5511B22A29AF5F04000B4B13 /* Breadfast_postsTests */,
-				5511B23429AF5F04000B4B13 /* Breadfast_postsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -425,20 +344,6 @@
 				556794FB29AFC1F500E4C111 /* PostFullContentCell.xib in Resources */,
 				55577BF829AFECBF006D0442 /* README.md in Resources */,
 				55B1FF6B29AF885100A5DB4E /* PostsListCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5511B22929AF5F04000B4B13 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5511B23329AF5F04000B4B13 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,34 +379,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5511B22729AF5F04000B4B13 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5511B23129AF5F04000B4B13 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5511B22D29AF5F04000B4B13 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5511B21429AF5F02000B4B13 /* Breadfast_posts */;
-			targetProxy = 5511B22C29AF5F04000B4B13 /* PBXContainerItemProxy */;
-		};
-		5511B23729AF5F04000B4B13 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5511B21429AF5F02000B4B13 /* Breadfast_posts */;
-			targetProxy = 5511B23629AF5F04000B4B13 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5511B21E29AF5F02000B4B13 /* Main.storyboard */ = {
@@ -701,78 +579,6 @@
 			};
 			name = Release;
 		};
-		5511B24329AF5F04000B4B13 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "anddrrek.Breadfast-postsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Breadfast_posts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Breadfast_posts";
-			};
-			name = Debug;
-		};
-		5511B24429AF5F04000B4B13 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "anddrrek.Breadfast-postsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Breadfast_posts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Breadfast_posts";
-			};
-			name = Release;
-		};
-		5511B24629AF5F04000B4B13 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "anddrrek.Breadfast-postsUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Breadfast_posts;
-			};
-			name = Debug;
-		};
-		5511B24729AF5F04000B4B13 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "anddrrek.Breadfast-postsUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Breadfast_posts;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -790,24 +596,6 @@
 			buildConfigurations = (
 				5511B24029AF5F04000B4B13 /* Debug */,
 				5511B24129AF5F04000B4B13 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5511B24229AF5F04000B4B13 /* Build configuration list for PBXNativeTarget "Breadfast_postsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5511B24329AF5F04000B4B13 /* Debug */,
-				5511B24429AF5F04000B4B13 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5511B24529AF5F04000B4B13 /* Build configuration list for PBXNativeTarget "Breadfast_postsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5511B24629AF5F04000B4B13 /* Debug */,
-				5511B24729AF5F04000B4B13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
