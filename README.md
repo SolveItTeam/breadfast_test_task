@@ -1,6 +1,6 @@
 # Breadfast Mobile Task - iOS
 
-# Task description
+# Description
 
 Write a sample social mobile application that contains 3 screens:
 - Splash screen 
@@ -54,9 +54,9 @@ API credentials (token and base URL) defined in `Config` file inside `Configurat
 ## Known issues
 
 Endpoint `GET /public/v2/users/specific_user_profile_id`
-    - this endpoint don't return following fields:
+    - this endpoint don't return following fields in response JSON:
         - avatar
-    - a lot of users with id's from `https://gorest.co.in/public/v2/posts` simply not exist. So `GET /public/v2/users/specific_user_profile_id` will return 404 code. In that case app will display *placeholder* user profile with `name: "User not found" and email: "example@email.com"`
+    - a lot of users with id's from `https://gorest.co.in/public/v2/posts` endpoint, simply doesn't exist. So `GET /public/v2/users/specific_user_profile_id` will always return 404 code. In that case app will display *placeholder* user profile with `name: "User not found" and email: "example@email.com"`
     
 Details in screenshots below:
 ![Not found](user_not_found.png)
