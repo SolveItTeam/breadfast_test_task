@@ -5,12 +5,6 @@ public protocol GetAllPostsUseCase {
     func invoke(pageNumber: Int) -> AnyPublisher<PaginatedEntity<[TimelinePostEntity]>, Error>
 }
 
-public struct TimelinePostEntity {
-    public let item: PostEntity
-    public let user: UserEntity
-}
-
-
 final class GetAllPostsUseCaseImpl {
     // MARK: - Properties
     private let postsRepository: PostsRepository
